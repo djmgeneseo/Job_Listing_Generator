@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Job Listing Generator V2</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+  <link rel="stylesheet" href="res/css/styles.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				 <form>
+				  <div>
+				    <label for="formControl">For either <strong><em>.pdf</em></strong> or <strong><em>.docx</em></strong> Job Description Templates:</label>
+				    <input type="file" class="form-control-file" id="formControl">
+				  </div>
+				  <div>
+				  	<button onclick="onClickPdf()" class="btn btn-primary">Send POST</button>
+				  </div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="vendor/js/jquery.min.js"></script>
+	<script src="vendor/js/bootstrap.min.js"></script>
+	<script src="res/js/scripts.js"></script>
+</body>
+</html>

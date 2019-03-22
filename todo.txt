@@ -1,0 +1,4 @@
+ - create function that can distinguish the text file type: 
+	if docx, go to docx post function; 
+	else if pdf, go to pdf post function; 
+	else, alert: 'Incorrect file type! Please input a .pdf or .docx file.';

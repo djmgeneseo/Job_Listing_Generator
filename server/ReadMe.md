@@ -1,3 +1,8 @@
+### To run:
+	cd to automated_job_listing_(git)
+	cd server
+	nodemon server.js
+
 ### ** CANNOT USE BOTH body-parser AND formidable middlewares! Leaning towards 
 
 # body-parser

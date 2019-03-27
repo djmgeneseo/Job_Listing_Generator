@@ -5,7 +5,10 @@ const convertDocxToHtml = (file, res) => {
     .then(function(result){
         var html = result.value; // The generated HTML
         if(html) {
-        	console.log('docx file has been recieved!')
+        	console.log('docx file has been recieved @ ' + new Date().toISOString().
+  														replace(/T/, ' ').      // replace T with a space
+  														replace(/\..+/, '')     // delete the dot and everything after
+  														)
         	res.send(html)
         } else {
         	res.send(result.messages);

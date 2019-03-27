@@ -54,11 +54,10 @@ const postDocx = (file) => {
 	});
 };
 
-const parseHtml = () => {
-
+const getBasicInfo = () => {
+	const arrayOfBasicInfo = [];
 	// 2nd table - Position Title, Department, Supervisor, Work Hours, date
 	// 0| Job Title: , 1| Department: , 2| Supervisor/Manager's Title: , 3| Work Hours & Travel
-	const arrayOfBasicInfo = [];
 	$('#results table:nth-child(2) tr td p').each(function(index) {
 		let tempText = $(this).text();
 		switch(index) {
@@ -85,14 +84,13 @@ const parseHtml = () => {
 			default:
 		}
 	});
-	console.log(arrayOfBasicInfo);
+	return arrayOfBasicInfo;
+}
 
-	// Third table - General Purpose
-	const jobDescription = $('#results table:nth-child(3) tr:nth-child(3) td p').text();
-	console.log(jobDescription);
+const getEssentialFunctionsInfo = () => {
+	let arrayOfEssentialFunctions = [];
 
 	// Fourth table
-	let arrayOfEssentialFunctions = [];
 	$('#results table:nth-child(5) tr').each(function(index) {
 		switch(index) {
 			case 0:
@@ -109,8 +107,11 @@ const parseHtml = () => {
 			arrayOfEssentialFunctions.splice(index, 1)
 		}
 	});
-	console.log(arrayOfEssentialFunctions);
 
+	return arrayOfEssentialFunctions;
+}
+
+const getWorkHoursAndTravelInfo = () => {
 	// Fifth Table
 	// Work Hours and Travel - 'Select all that apply: ☐ or ☒'
 	let workHoursAndTravelText = '';
@@ -164,16 +165,11 @@ const parseHtml = () => {
 				break;
 		}
 	});
-	console.log(workHoursAndTravelText);
 
-	// Desired Minimum Qualifications
-	// Sixth Table 
-	$('#results table:nth-child(7) tr td p').each(function(index) {
-		// console.log($(this).text());
-	});
+	return workHoursAndTravelText;
+}
 
-	// Supervision Exercised
-	// 8th Table 
+const getSupervisionExercisedInfo = () => {
 	let supervisionExcercisedText = '';
 	$('#results table:nth-child(8) tr').each(function(index) {
 		switch(index){
@@ -195,27 +191,54 @@ const parseHtml = () => {
 				break;
 		}
 	});
+	return supervisionExcercisedText;
+}
+
+const parseHtml = () => {
+	
+	let arrayOfBasicInfo = getBasicInfo();
+	console.log(arrayOfBasicInfo);
+
+	// Third table - General Purpose
+	let jobDescription = $('#results table:nth-child(3) tr:nth-child(3) td p').text();
+	console.log(jobDescription);
+
+	let arrayOfEssentialFunctions = getEssentialFunctionsInfo();
+	console.log(arrayOfEssentialFunctions);
+
+	let workHoursAndTravelText = getWorkHoursAndTravelInfo();
+	console.log(workHoursAndTravelText);
+
+	// Desired Minimum Qualifications
+	// Sixth Table 
+	$('#results table:nth-child(7) tr td p').each(function(index) {
+		// console.log($(this).text());
+	});
+
+	// Supervision Exercised
+	// 8th Table 
+	let supervisionExcercisedText = getSupervisionExercisedInfo();
 	console.log(supervisionExcercisedText);
 }
 
-const postPdf = (file) => {
-	var form = new FormData();
-	form.append("file", file);
+// const postPdf = (file) => {
+// 	var form = new FormData();
+// 	form.append("file", file);
 
-	var settings = {
-	  "async": true,
-	  "crossDomain": true,
-	  "url": "http://localhost:8000/pdf",
-	  "method": "POST",
-	  "headers": {
-	  },
-	  "processData": false,
-	  "contentType": false,
-	  "mimeType": "multipart/form-data",
-	  "data": form
-	}
+// 	var settings = {
+// 	  "async": true,
+// 	  "crossDomain": true,
+// 	  "url": "http://localhost:8000/pdf",
+// 	  "method": "POST",
+// 	  "headers": {
+// 	  },
+// 	  "processData": false,
+// 	  "contentType": false,
+// 	  "mimeType": "multipart/form-data",
+// 	  "data": form
+// 	}
 
-	$.ajax(settings).done(function (response) {
-	  console.log(response);
-	});
-};
+// 	$.ajax(settings).done(function (response) {
+// 	  console.log(response);
+// 	});
+// };
